@@ -118,7 +118,11 @@ namespace Assignment
 
         private int GCD(int a, int b)
         {
-            return -1;
+            if (b == 0)
+                return a;
+
+            return GCD(b, a % b); //ค่าจะลดลงอย่างน้อยครึ่งหนึ่ง จึงเร็วมากแม้เลขใหญ่
+
         }
 
         public int ASN04_RecursiveBinarySearch(int[] arr, int target)
@@ -128,7 +132,19 @@ namespace Assignment
 
         private int BinarySearch(int[] arr, int target, int low, int high)
         {
-            return -1;
+            if (low > high)
+                return -1;
+
+            int mid = low + (high - low) / 2;
+
+            if (arr[mid] == target) return mid;
+
+            // ค้นหาครึ่งซ้าย
+            if (arr[mid] > target)
+            return BinarySearch(arr, target, low, mid - 1);
+
+            // ค้นหาครึ่งขวา
+            return BinarySearch(arr, target, mid + 1, high);
         }
 
         #endregion
